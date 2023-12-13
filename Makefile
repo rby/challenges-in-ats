@@ -21,7 +21,7 @@ ATSOPT=$(ATSHOMEQ)/bin/patsopt
 #
 # HX: Please uncomment the one you want, or skip it entirely
 #
-ATSCCFLAGS= -DATS_MEMALLOC_LIBC
+ATSCCFLAGS= -DATS_MEMALLOC_LIBC -cleanaft
 # ATSCCFLAGS=-O2
 #
 # '-flto' enables link-time optimization such as inlining lib functions
@@ -31,7 +31,6 @@ ATSCCFLAGS= -DATS_MEMALLOC_LIBC
 #
 ######
 #
-challenges::
 #
 ######
 #
@@ -39,8 +38,13 @@ challenges::
 # with the name of the file you want to compile
 #
 
-challenges:: src/DATS/challenges.dats ; \
-  $(ATSCC) $(ATSCCFLAGS) -o $@ $< || echo $@ ": ERROR!!!"
+%_sats.o: src/SATS/%.sats ; $(ATSCC) $(ATSCCFLAGS) -c $< || echo $@ ": ERROR!!!"
+%_dats.o: src/DATS/%.dats ; $(ATSCC) $(ATSCCFLAGS) -c $< || echo $@ ": ERROR!!!"
+
+objects = main_dats.o arrays_sats.o arrays_dats.o
+
+challenges:: $(objects); \
+  $(ATSCC) $(ATSCCFLAGS) -o $@ $(objects) || echo $@ ": ERROR!!!"
 
 cleanall:: ; $(RMF) challenges
 
