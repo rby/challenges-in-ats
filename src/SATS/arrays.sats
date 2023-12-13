@@ -6,5 +6,6 @@ fun
 push_zero_start
 {n: nat}
 (
-  v: &(@[i32][n])
+  v: &(@[i32][n]),
+  n: size_t n
 ): size_t

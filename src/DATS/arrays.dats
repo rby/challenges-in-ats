@@ -6,5 +6,5 @@
 staload ARRAYS = "src/SATS/arrays.sats"
 
 implement
-$ARRAYS.push_zero_start {n}(arr) =
+$ARRAYS.push_zero_start {n}(arr, n) =
  i2sz(0)

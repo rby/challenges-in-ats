@@ -4,6 +4,7 @@
 staload ARRAYS = "src/SATS/arrays.sats"
 staload "src/DATS/arrays.dats"
 
+
 fun {a:t@ype} println_arr{n: int}(arr: &(@[a][n]), n: size_t(n)): void =
   (
    print!("[");
@@ -11,13 +12,16 @@ fun {a:t@ype} println_arr{n: int}(arr: &(@[a][n]), n: size_t(n)): void =
    println!("]")
   )
 
+fun {a:t@ype} println_arr_pre{n: int}(pre: string, arr: &(@[a][n]), n: size_t(n)): void =
+  (print!(pre); println_arr(arr, n))
+
 fun ex_arrays() : void =
     let
         val N: size_t(3) = i2sz(3) 
-        var arr = @[int][n](1)
-        val () = (print!("input:  "); println_arr<int>(arr, N))
-        val res = $ARRAYS.push_zero_start(arr)
-        val () = (print!("output: "); println_arr<int>(arr, N))
+        var arr = @[int][N](1)
+        val () =  println_arr_pre<int>("before: ", arr, N)
+        val res = $ARRAYS.push_zero_start(arr, N)
+        val () =  println_arr_pre<int>("after:  ", arr, N)
     in
     // nothing
     end
