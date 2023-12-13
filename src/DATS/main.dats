@@ -18,7 +18,8 @@ fun {a:t@ype} println_arr_pre{n: int}(pre: string, arr: &(@[a][n]), n: size_t(n)
 fun ex_arrays() : void =
     let
         val N: size_t(3) = i2sz(3) 
-        var arr = @[int][N](1)
+        var arr = @[int][N](0)
+        val () = arr[0] := 1
         val () =  println_arr_pre<int>("before: ", arr, N)
         val res = $ARRAYS.push_zero_start(arr, N)
         val () =  println_arr_pre<int>("after:  ", arr, N)
