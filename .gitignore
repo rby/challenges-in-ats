@@ -4,4 +4,6 @@
 !/src/DATS
 !/src/SATS
 !Makefile
+!LICENSE
+!README.md
 !.gitignore
